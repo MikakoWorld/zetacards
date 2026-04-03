@@ -101,12 +101,12 @@ function fitProfileText() {
     { selector: '.p-creator', max: 22 },
     { selector: '.p-nickname', max: 22 },
     { selector: '.p-favorite', max: 22 },
-    { selector: '.p-oshi1-name', max: 18 },
-    { selector: '.p-oshi2-name', max: 18 },
-    { selector: '.p-oshi3-name', max: 18 },
-    { selector: '.p-oshi1-desc', max: 16 },
-    { selector: '.p-oshi2-desc', max: 16 },
-    { selector: '.p-oshi3-desc', max: 16 }
+    { selector: '.overlay.p-oshi1', max: 20 },
+    { selector: '.overlay.p-oshi2', max: 20 },
+    { selector: '.overlay.p-oshi3', max: 20 },
+    { selector: '.overlay.p-oshi1-desc', max: 14 },
+    { selector: '.overlay.p-oshi2-desc', max: 14 },
+    { selector: '.overlay.p-oshi3-desc', max: 14 }
   ];
 
   fields.forEach(({ selector, max }) => {
