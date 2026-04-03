@@ -20,8 +20,8 @@
   <main class="layout">
     <section class="panel controls">
       <div class="segmented" role="tablist" aria-label="カード切り替え">
-        <button class="tab is-active" data-template="question" aria-selected="true">質問カード</button>
-        <button class="tab" data-template="profile" aria-selected="false">自己紹介カード</button>
+        <button class="tab is-active" data-template="profile" aria-selected="true">自己紹介カード</button>
+        <button class="tab" data-template="question" aria-selected="false">質問カード</button>
       </div>
 
       <form id="question-form" class="form-section">
@@ -45,6 +45,9 @@
 
       <form id="profile-form" class="form-section hidden">
         <h2>自己紹介カード</h2>
+        <label>プロフィール画像
+          <input type="file" accept="image/*" name="profileImage">
+        </label>
         <label>なまえ
           <input name="name" maxlength="24" placeholder="例：ひかり">
         </label>
@@ -71,17 +74,26 @@
           <label>推しキャラ1 名前
             <input name="oshi1Name" maxlength="22" placeholder="例：○○">
           </label>
+          <label>推しキャラ1 説明
+            <input name="oshi1Desc" maxlength="40" placeholder="例：好きな理由など">
+          </label>
           <label>推しキャラ2 画像
             <input type="file" accept="image/*" name="oshi2Image">
           </label>
           <label>推しキャラ2 名前
             <input name="oshi2Name" maxlength="22" placeholder="例：○○">
           </label>
+          <label>推しキャラ2 説明
+            <input name="oshi2Desc" maxlength="40" placeholder="例：好きな理由など">
+          </label>
           <label>推しキャラ3 画像
             <input type="file" accept="image/*" name="oshi3Image">
           </label>
           <label>推しキャラ3 名前
             <input name="oshi3Name" maxlength="22" placeholder="例：○○">
+          </label>
+          <label>推しキャラ3 説明
+            <input name="oshi3Desc" maxlength="40" placeholder="例：好きな理由など">
           </label>
         </div>
       </form>
@@ -114,6 +126,7 @@
 
       <div id="profile-preview" class="card-frame profile-card hidden">
         <img src="assets/template-profile.jpg" alt="自己紹介カードテンプレート" class="base-image">
+        <div class="img-slot profile-slot"><img alt="プロフィール画像"></div>
         <div class="overlay p-name" data-field="name"></div>
         <div class="overlay p-xid" data-field="xId"></div>
         <div class="overlay p-history" data-field="zetaHistory"></div>
@@ -125,8 +138,11 @@
         <div class="img-slot slot2"><img alt="推し2"></div>
         <div class="img-slot slot3"><img alt="推し3"></div>
         <div class="overlay p-oshi1" data-field="oshi1Name"></div>
+        <div class="overlay p-oshi1-desc" data-field="oshi1Desc"></div>
         <div class="overlay p-oshi2" data-field="oshi2Name"></div>
+        <div class="overlay p-oshi2-desc" data-field="oshi2Desc"></div>
         <div class="overlay p-oshi3" data-field="oshi3Name"></div>
+        <div class="overlay p-oshi3-desc" data-field="oshi3Desc"></div>
       </div>
     </section>
   </main>

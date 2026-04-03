@@ -1,5 +1,5 @@
 const state = {
-  activeTemplate: 'question',
+  activeTemplate: 'profile',
   question: {
     firstCharacter: '',
     featureRequest: '',
@@ -14,9 +14,13 @@ const state = {
     creatorId: '',
     nickname: '',
     favoriteThing: '',
+    profileImage: '',
     oshi1Name: '',
     oshi2Name: '',
     oshi3Name: '',
+    oshi1Desc: '',
+    oshi2Desc: '',
+    oshi3Desc: '',
     oshi1Image: '',
     oshi2Image: '',
     oshi3Image: ''
@@ -55,7 +59,80 @@ function applyText(previewRoot, data) {
   });
 }
 
+function getSlotDimensions(slot) {
+  if (!slot) return { width: 1, height: 1 };
+  const rect = slot.getBoundingClientRect();
+  if (rect.width > 1 && rect.height > 1) {
+    return { width: rect.width, height: rect.height };
+  }
+
+  const baseImg = profilePreview.querySelector('.base-image');
+  const naturalWidth = baseImg?.naturalWidth || 1024;
+  const naturalHeight = baseImg?.naturalHeight || 1448;
+
+  if (slot.classList.contains('profile-slot')) {
+    return { width: naturalWidth * 0.20, height: naturalHeight * 0.15 };
+  }
+  if (slot.classList.contains('slot1') || slot.classList.contains('slot2') || slot.classList.contains('slot3')) {
+    return { width: naturalWidth * 0.245, height: naturalHeight * 0.165 };
+  }
+
+  return { width: rect.width || 1, height: rect.height || 1 };
+}
+
+function createCoverDataURL(src, width, height) {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.onload = () => {
+      const canvas = document.createElement('canvas');
+      canvas.width = Math.max(1, Math.floor(width));
+      canvas.height = Math.max(1, Math.floor(height));
+      const ctx = canvas.getContext('2d');
+      const imgRatio = img.width / img.height;
+      const boxRatio = canvas.width / canvas.height;
+
+      let sx, sy, sw, sh;
+      if (imgRatio > boxRatio) {
+        sh = img.height;
+        sw = sh * boxRatio;
+        sx = (img.width - sw) / 2;
+        sy = 0;
+      } else {
+        sw = img.width;
+        sh = sw / boxRatio;
+        sx = 0;
+        sy = (img.height - sh) / 2;
+      }
+
+      ctx.drawImage(img, sx, sy, sw, sh, 0, 0, canvas.width, canvas.height);
+      resolve(canvas.toDataURL('image/png'));
+    };
+    img.onerror = reject;
+    img.src = src;
+  });
+}
+
+async function applyCoverImage(name, rawSrc) {
+  const slotSelector = name === 'profileImage' ? '.profile-slot' : name === 'oshi1Image' ? '.slot1' : name === 'oshi2Image' ? '.slot2' : '.slot3';
+  const slot = profilePreview.querySelector(slotSelector);
+  const dims = getSlotDimensions(slot);
+  const processed = await createCoverDataURL(rawSrc, dims.width, dims.height);
+  state.profile[name] = processed;
+  persist();
+  applyImages();
+}
+
 function applyImages() {
+  const profileSlot = profilePreview.querySelector('.profile-slot');
+  const profileImg = profileSlot.querySelector('img');
+  const profileSrc = state.profile.profileImage;
+  if (profileSrc) {
+    profileImg.src = profileSrc;
+    profileSlot.classList.add('has-image');
+  } else {
+    profileImg.removeAttribute('src');
+    profileSlot.classList.remove('has-image');
+  }
   [1,2,3].forEach((n) => {
     const slot = profilePreview.querySelector(`.slot${n}`);
     const img = slot.querySelector('img');
@@ -77,16 +154,14 @@ questionForm.addEventListener('input', (event) => {
   persist();
 });
 
-profileForm.addEventListener('input', (event) => {
+profileForm.addEventListener('input', async (event) => {
   const { name, value, type, files } = event.target;
   if (type === 'file') {
     const file = files?.[0];
     if (!file) return;
     const reader = new FileReader();
-    reader.onload = () => {
-      state.profile[name] = reader.result;
-      applyImages();
-      persist();
+    reader.onload = async () => {
+      await applyCoverImage(name, reader.result);
     };
     reader.readAsDataURL(file);
     return;
