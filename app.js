@@ -60,12 +60,6 @@ function applyText(previewRoot, data) {
     const value = data[node.dataset.field] || '';
     node.textContent = value;
   });
-
-  if (previewRoot === questionPreview) {
-    fitQuestionText();
-  } else if (previewRoot === profilePreview) {
-    fitProfileText();
-  }
 }
 
 function fitQuestionText() {
@@ -304,8 +298,34 @@ downloadBtn.addEventListener('click', async () => {
 
 loadState();
 fillForms();
-applyText(questionPreview, state.question);
-applyText(profilePreview, state.profile);
+setTemplate(state.activeTemplate);
 applyImages();
 applyOshiDescFontSize();
-setTemplate(state.activeTemplate);
+
+function rerenderAndFit() {
+  applyText(questionPreview, state.question);
+  applyText(profilePreview, state.profile);
+  fitQuestionText();
+  fitProfileText();
+}
+
+requestAnimationFrame(() => {
+  requestAnimationFrame(() => {
+    rerenderAndFit();
+  });
+});
+
+window.addEventListener('load', () => {
+  rerenderAndFit();
+  setTimeout(rerenderAndFit, 100);
+});
+
+window.addEventListener('resize', () => {
+  rerenderAndFit();
+});
+
+document.querySelectorAll('.img-slot img, .base-image').forEach((img) => {
+  img.addEventListener('load', () => {
+    rerenderAndFit();
+  });
+});
