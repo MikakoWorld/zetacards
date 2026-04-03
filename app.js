@@ -15,9 +15,9 @@ const state = {
     nickname: '',
     favoriteThing: '',
     profileImage: '',
-    oshi1DescFontSize: 14,
-    oshi2DescFontSize: 14,
-    oshi3DescFontSize: 14,
+    oshi1DescFontSize: 2,
+    oshi2DescFontSize: 2,
+    oshi3DescFontSize: 2,
     oshi1Name: '',
     oshi2Name: '',
     oshi3Name: '',
@@ -234,9 +234,9 @@ profileForm.addEventListener('input', async (event) => {
     return;
   }
   if (name === 'oshi1DescFontSize' || name === 'oshi2DescFontSize' || name === 'oshi3DescFontSize') {
-    const size = Number(value) || 14;
+    const size = Number(value) || 2;
     state.profile[name] = size;
-    document.getElementById(`${name}-label`).textContent = `${size}px`;
+    document.getElementById(`${name}-label`).textContent = `${size}vw`;
     applyOshiDescFontSize();
     persist();
     return;
@@ -248,9 +248,9 @@ profileForm.addEventListener('input', async (event) => {
 });
 
 function applyOshiDescFontSize() {
-  const sizes = [1, 2, 3].map((n) => state.profile[`oshi${n}DescFontSize`] || 14);
+  const sizes = [1, 2, 3].map((n) => state.profile[`oshi${n}DescFontSize`] || 2);
   ['p-oshi1-desc', 'p-oshi2-desc', 'p-oshi3-desc'].forEach((clazz, i) => {
-    const size = `${sizes[i]}px`;
+    const size = `${sizes[i]}vw`;
     document.querySelectorAll(`.${clazz}`).forEach((el) => {
       el.style.fontSize = size;
     });
