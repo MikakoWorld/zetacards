@@ -111,6 +111,14 @@ textarea {
   resize: vertical;
 }
 
+small {
+  display: block;
+  margin-top: 4px;
+  font-size: 0.8rem;
+  color: #666;
+  font-weight: 400;
+}
+
 .upload-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -223,19 +231,19 @@ textarea {
 /* profile */
 .p-name {
   left: 50.5%;
-  top: 10.5%;
+  top: 11%;
   width: 41.2%;
   height: 4%;
-  font-size: clamp(14px, 1.7vw, 22px);
+  font-size: clamp(14px, 1.7vw, 20px);
   /* background-color: #66339942; */
 }
 
 .p-xid {
   left: 50.5%;
-  top: 15%;
+  top: 15.5%;
   width: 41%;
   height: 4%;
-  font-size: clamp(14px, 1.7vw, 22px);
+  font-size: clamp(14px, 1.7vw, 20px);
   /* background-color: #66339942; */
 }
 
@@ -244,7 +252,7 @@ textarea {
   top: 19.8%;
   width: 41%;
   height: 3.6%;
-  font-size: clamp(14px, 1.7vw, 22px);
+  font-size: clamp(14px, 1.7vw, 20px);
   /* background-color: #66339942; */
 }
 
@@ -253,7 +261,7 @@ textarea {
   top: 24.2%;
   width: 29.5%;
   height: 4.2%;
-  font-size: clamp(14px, 1.7vw, 22px);
+  font-size: clamp(14px, 1.7vw, 18px);
   /* background-color: #66339942; */
 }
 

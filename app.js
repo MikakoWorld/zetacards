@@ -60,6 +60,35 @@ function applyText(previewRoot, data) {
     const value = data[node.dataset.field] || '';
     node.textContent = value;
   });
+
+  if (previewRoot === questionPreview) {
+    fitQuestionText();
+  }
+}
+
+function fitQuestionText() {
+  const fields = [
+    { selector: '.q-first', max: 28 },
+    { selector: '.q-feature', max: 28 },
+    { selector: '.q-reason', max: 28 },
+    { selector: '.q-message', max: 28 },
+    { selector: '.q-free', max: 28 }
+  ];
+
+  fields.forEach(({ selector, max }) => {
+    const node = questionPreview.querySelector(selector);
+    if (!node) return;
+
+    // まず最大サイズを設定
+    let fontSize = max;
+    node.style.fontSize = `${fontSize}px`;
+
+    // 横幅または高さにはみ出さないまで縮小
+    while (fontSize > 8 && (node.scrollHeight > node.clientHeight + 2 || node.scrollWidth > node.clientWidth + 2)) {
+      fontSize -= 1;
+      node.style.fontSize = `${fontSize}px`;
+    }
+  });
 }
 
 function getSlotDimensions(slot) {
