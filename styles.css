@@ -182,8 +182,8 @@ textarea {
 
 /* question */
 .q-first {
-  left: 10%;
-  top: 13.5%;
+  left: 9%;
+  top: 13.8%;
   width: 38%;
   height: 4.8%;
   font-size: clamp(13px, 1.7vw, 22px);
@@ -192,42 +192,42 @@ textarea {
 }
 
 .q-feature {
-  left: 10%;
-  top: 24%;
-  width: 37%;
-  height: 12%;
+  left: 9%;
+  top: 23%;
+  width: 38%;
+  height: 13%;
 }
 
 .q-reason {
-  left: 54%;
-  top: 13.2%;
-  width: 31%;
-  height: 11.2%;
+  left: 53%;
+  top: 13.6%;
+  width: 32.2%;
+  height: 10.2%;
 }
 
 .q-message {
-  left: 54.5%;
-  top: 28%;
-  width: 30%;
+  left: 53.5%;
+  top: 28.8%;
+  width: 32%;
   height: 7.5%;
 }
 
 .q-free {
   left: 11%;
-  top: 48%;
-  width: 77%;
-  height: 45%;
-  font-size: clamp(14px, 1.6vw, 22px);
+  top: 47%;
+  width: 73%;
+  height: 47.4%;
+  font-size: clamp(14px, 1.6vw, 18px);
 }
 
 /* profile */
 .p-name {
-    left: 50.5%;
-    top: 10.5%;
-    width: 41.2%;
-    height: 4%;
-    font-size: clamp(14px, 1.7vw, 22px);
-    /* background-color: #66339942; */
+  left: 50.5%;
+  top: 10.5%;
+  width: 41.2%;
+  height: 4%;
+  font-size: clamp(14px, 1.7vw, 22px);
+  /* background-color: #66339942; */
 }
 
 .p-xid {
@@ -249,12 +249,12 @@ textarea {
 }
 
 .p-creator {
-    left: 62%;
-    top: 24.2%;
-    width: 29.5%;
-    height: 4.2%;
-    font-size: clamp(14px, 1.7vw, 22px);
-    /* background-color: #66339942; */
+  left: 62%;
+  top: 24.2%;
+  width: 29.5%;
+  height: 4.2%;
+  font-size: clamp(14px, 1.7vw, 22px);
+  /* background-color: #66339942; */
 }
 
 .p-nickname {
@@ -300,23 +300,25 @@ textarea {
 .p-oshi1-desc,
 .p-oshi2-desc,
 .p-oshi3-desc {
-  top: 89%;
-  width: 20%;
-  height: 8%;
+  top: 68.8%;
+  width: 24%;
+  height: 27.4%;
   font-size: clamp(10px, 1.2vw, 14px);
-  text-align: center;
+  text-align: left;
   display: flex;
   align-items: flex-start;
   justify-content: center;
   padding: 0 2px;
+  /* background-color: #5cd0b0b5; */
 }
+
 
 .p-oshi1 {
   left: 16.5%;
 }
 
 .p-oshi1-desc {
-  left: 12.5%;
+  left: 14.5%;
 }
 
 .p-oshi2 {
@@ -324,7 +326,7 @@ textarea {
 }
 
 .p-oshi2-desc {
-  left: 40.5%;
+  left: 42%;
 }
 
 .p-oshi3 {
@@ -332,7 +334,7 @@ textarea {
 }
 
 .p-oshi3-desc {
-  left: 68.5%;
+  left: 69.5%;
 }
 
 .img-slot {

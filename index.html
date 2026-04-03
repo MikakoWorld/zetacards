@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="ja">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -9,6 +10,7 @@
   <script defer src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
   <script defer src="app.js"></script>
 </head>
+
 <body>
   <header class="topbar">
     <div>
@@ -75,7 +77,11 @@
             <input name="oshi1Name" maxlength="22" placeholder="例：○○">
           </label>
           <label>推しキャラ1 説明
-            <input name="oshi1Desc" maxlength="40" placeholder="例：好きな理由など">
+            <input name="oshi1Desc" maxlength="300" placeholder="例：好きな理由など（300文字まで）">
+          </label>
+          <label>推しキャラ1 説明フォントサイズ
+            <input type="range" name="oshi1DescFontSize" min="10" max="28" value="14">
+            <span id="oshi1DescFontSize-label">14px</span>
           </label>
           <label>推しキャラ2 画像
             <input type="file" accept="image/*" name="oshi2Image">
@@ -84,7 +90,11 @@
             <input name="oshi2Name" maxlength="22" placeholder="例：○○">
           </label>
           <label>推しキャラ2 説明
-            <input name="oshi2Desc" maxlength="40" placeholder="例：好きな理由など">
+            <input name="oshi2Desc" maxlength="300" placeholder="例：好きな理由など（300文字まで）">
+          </label>
+          <label>推しキャラ2 説明フォントサイズ
+            <input type="range" name="oshi2DescFontSize" min="10" max="28" value="14">
+            <span id="oshi2DescFontSize-label">14px</span>
           </label>
           <label>推しキャラ3 画像
             <input type="file" accept="image/*" name="oshi3Image">
@@ -93,7 +103,11 @@
             <input name="oshi3Name" maxlength="22" placeholder="例：○○">
           </label>
           <label>推しキャラ3 説明
-            <input name="oshi3Desc" maxlength="40" placeholder="例：好きな理由など">
+            <input name="oshi3Desc" maxlength="300" placeholder="例：好きな理由など（300文字まで）">
+          </label>
+          <label>推しキャラ3 説明フォントサイズ
+            <input type="range" name="oshi3DescFontSize" min="10" max="28" value="14">
+            <span id="oshi3DescFontSize-label">14px</span>
           </label>
         </div>
       </form>
@@ -147,4 +161,5 @@
     </section>
   </main>
 </body>
+
 </html>

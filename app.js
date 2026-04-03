@@ -15,6 +15,9 @@ const state = {
     nickname: '',
     favoriteThing: '',
     profileImage: '',
+    oshi1DescFontSize: 14,
+    oshi2DescFontSize: 14,
+    oshi3DescFontSize: 14,
     oshi1Name: '',
     oshi2Name: '',
     oshi3Name: '',
@@ -166,10 +169,29 @@ profileForm.addEventListener('input', async (event) => {
     reader.readAsDataURL(file);
     return;
   }
+  if (name === 'oshi1DescFontSize' || name === 'oshi2DescFontSize' || name === 'oshi3DescFontSize') {
+    const size = Number(value) || 14;
+    state.profile[name] = size;
+    document.getElementById(`${name}-label`).textContent = `${size}px`;
+    applyOshiDescFontSize();
+    persist();
+    return;
+  }
+
   state.profile[name] = value;
   applyText(profilePreview, state.profile);
   persist();
 });
+
+function applyOshiDescFontSize() {
+  const sizes = [1, 2, 3].map((n) => state.profile[`oshi${n}DescFontSize`] || 14);
+  ['p-oshi1-desc', 'p-oshi2-desc', 'p-oshi3-desc'].forEach((clazz, i) => {
+    const size = `${sizes[i]}px`;
+    document.querySelectorAll(`.${clazz}`).forEach((el) => {
+      el.style.fontSize = size;
+    });
+  });
+}
 
 function persist() {
   localStorage.setItem('zeta-card-maker', JSON.stringify(state));
@@ -221,4 +243,5 @@ fillForms();
 applyText(questionPreview, state.question);
 applyText(profilePreview, state.profile);
 applyImages();
+applyOshiDescFontSize();
 setTemplate(state.activeTemplate);
