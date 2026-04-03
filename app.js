@@ -95,7 +95,8 @@ function getSlotDimensions(slot) {
   if (!slot) return { width: 1, height: 1 };
   const rect = slot.getBoundingClientRect();
   if (rect.width > 1 && rect.height > 1) {
-    return { width: rect.width, height: rect.height };
+    // 高解像度でトリミングするため、実際のサイズの2倍を返す
+    return { width: rect.width * 2, height: rect.height * 2 };
   }
 
   const baseImg = profilePreview.querySelector('.base-image');
@@ -103,13 +104,13 @@ function getSlotDimensions(slot) {
   const naturalHeight = baseImg?.naturalHeight || 1448;
 
   if (slot.classList.contains('profile-slot')) {
-    return { width: naturalWidth * 0.20, height: naturalHeight * 0.15 };
+    return { width: naturalWidth * 0.20 * 2, height: naturalHeight * 0.15 * 2 };
   }
   if (slot.classList.contains('slot1') || slot.classList.contains('slot2') || slot.classList.contains('slot3')) {
-    return { width: naturalWidth * 0.245, height: naturalHeight * 0.165 };
+    return { width: naturalWidth * 0.245 * 2, height: naturalHeight * 0.165 * 2 };
   }
 
-  return { width: rect.width || 1, height: rect.height || 1 };
+  return { width: (rect.width || 1) * 2, height: (rect.height || 1) * 2 };
 }
 
 function createCoverDataURL(src, width, height) {
