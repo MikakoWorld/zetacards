@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>zeta card maker</title>
+  <meta name="description" content="zeta自己紹介カード / 質問カードをスマホから簡単入力して画像保存できる静的サイト">
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <h1>zeta card maker</h1>
+      <p>スマホ入力 → プレビュー → PNG保存</p>
+    </div>
+  </header>
+
+  <main class="layout">
+    <section class="panel controls">
+      <div class="segmented" role="tablist" aria-label="カード切り替え">
+        <button class="tab is-active" data-template="question" aria-selected="true">質問カード</button>
+        <button class="tab" data-template="profile" aria-selected="false">自己紹介カード</button>
+      </div>
+
+      <form id="question-form" class="form-section">
+        <h2>質問カード</h2>
+        <label>初めて話したキャラは？
+          <input name="firstCharacter" maxlength="36" placeholder="例：○○ちゃん">
+        </label>
+        <label>zetaに欲しい新機能は？
+          <textarea name="featureRequest" rows="3" maxlength="120" placeholder="例：検索強化、画像まとめ、通知改善"></textarea>
+        </label>
+        <label>zetaを始めたきっかけ
+          <textarea name="reasonStarted" rows="3" maxlength="120" placeholder="例：推しの投稿を追いやすそうだったから"></textarea>
+        </label>
+        <label>運営に一言🥺
+          <textarea name="messageToOps" rows="3" maxlength="120" placeholder="例：いつもありがとうございます！"></textarea>
+        </label>
+        <label>FREE SPACE
+          <textarea name="freeSpace" rows="8" maxlength="500" placeholder="自由記入。感想、推し語り、告知など"></textarea>
+        </label>
+      </form>
+
+      <form id="profile-form" class="form-section hidden">
+        <h2>自己紹介カード</h2>
+        <label>なまえ
+          <input name="name" maxlength="24" placeholder="例：ひかり">
+        </label>
+        <label>X ID
+          <input name="xId" maxlength="32" placeholder="例：@hikari_zeta">
+        </label>
+        <label>zeta歴
+          <input name="zetaHistory" maxlength="28" placeholder="例：2024年冬から">
+        </label>
+        <label>クリエイターID
+          <input name="creatorId" maxlength="28" placeholder="例：creator_1234">
+        </label>
+        <label>「○○って呼んでね」
+          <input name="nickname" maxlength="18" placeholder="例：ひかるん">
+        </label>
+        <label>好きなものは ○○ だよ♡
+          <input name="favoriteThing" maxlength="24" placeholder="例：アニメとカフェ巡り">
+        </label>
+
+        <div class="upload-grid">
+          <label>推しキャラ1 画像
+            <input type="file" accept="image/*" name="oshi1Image">
+          </label>
+          <label>推しキャラ1 名前
+            <input name="oshi1Name" maxlength="22" placeholder="例：○○">
+          </label>
+          <label>推しキャラ2 画像
+            <input type="file" accept="image/*" name="oshi2Image">
+          </label>
+          <label>推しキャラ2 名前
+            <input name="oshi2Name" maxlength="22" placeholder="例：○○">
+          </label>
+          <label>推しキャラ3 画像
+            <input type="file" accept="image/*" name="oshi3Image">
+          </label>
+          <label>推しキャラ3 名前
+            <input name="oshi3Name" maxlength="22" placeholder="例：○○">
+          </label>
+        </div>
+      </form>
+
+      <div class="actions">
+        <button id="download-btn" type="button">PNGで保存</button>
+        <button id="reset-btn" type="button" class="secondary">入力をリセット</button>
+      </div>
+
+      <details class="notes">
+        <summary>使い方</summary>
+        <ol>
+          <li>上のタブでカードを選ぶ</li>
+          <li>フォームに入力すると右のプレビューへ即反映</li>
+          <li>「PNGで保存」で画像を書き出す</li>
+          <li>GitHub Pages にそのまま置けば公開できる</li>
+        </ol>
+      </details>
+    </section>
+
+    <section class="panel preview-wrap">
+      <div id="question-preview" class="card-frame question-card">
+        <img src="assets/template-question.jpg" alt="質問カードテンプレート" class="base-image">
+        <div class="overlay q-first" data-field="firstCharacter"></div>
+        <div class="overlay q-feature multiline" data-field="featureRequest"></div>
+        <div class="overlay q-reason multiline" data-field="reasonStarted"></div>
+        <div class="overlay q-message multiline" data-field="messageToOps"></div>
+        <div class="overlay q-free multiline" data-field="freeSpace"></div>
+      </div>
+
+      <div id="profile-preview" class="card-frame profile-card hidden">
+        <img src="assets/template-profile.jpg" alt="自己紹介カードテンプレート" class="base-image">
+        <div class="overlay p-name" data-field="name"></div>
+        <div class="overlay p-xid" data-field="xId"></div>
+        <div class="overlay p-history" data-field="zetaHistory"></div>
+        <div class="overlay p-creator" data-field="creatorId"></div>
+        <div class="overlay p-nickname" data-field="nickname"></div>
+        <div class="overlay p-favorite" data-field="favoriteThing"></div>
+
+        <div class="img-slot slot1"><img alt="推し1"></div>
+        <div class="img-slot slot2"><img alt="推し2"></div>
+        <div class="img-slot slot3"><img alt="推し3"></div>
+        <div class="overlay p-oshi1" data-field="oshi1Name"></div>
+        <div class="overlay p-oshi2" data-field="oshi2Name"></div>
+        <div class="overlay p-oshi3" data-field="oshi3Name"></div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,187 @@
+:root {
+  --bg: #f4f2fb;
+  --panel: #ffffff;
+  --line: #ddd8f4;
+  --text: #23233a;
+  --accent: #7a66e8;
+  --accent-2: #b5a8f5;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+  color: var(--text);
+  background: var(--bg);
+}
+
+.topbar {
+  padding: 20px 16px 8px;
+}
+.topbar h1 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+.topbar p {
+  margin: 6px 0 0;
+  color: #5e6186;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(300px, 420px) minmax(280px, 1fr);
+  gap: 16px;
+  padding: 8px 16px 24px;
+  align-items: start;
+}
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  box-shadow: 0 10px 25px rgba(66, 57, 111, 0.08);
+}
+.controls {
+  padding: 14px;
+  position: sticky;
+  top: 8px;
+}
+.segmented {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+.tab, .actions button {
+  border: 0;
+  border-radius: 12px;
+  padding: 12px 14px;
+  font-size: 1rem;
+}
+.tab {
+  background: #efeafd;
+  color: #5a4bb8;
+  font-weight: 700;
+}
+.tab.is-active {
+  background: var(--accent);
+  color: white;
+}
+.form-section h2 {
+  font-size: 1.1rem;
+  margin: 8px 0 12px;
+}
+label {
+  display: block;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+input, textarea {
+  width: 100%;
+  display: block;
+  margin-top: 6px;
+  border: 1px solid #d5d0ef;
+  border-radius: 12px;
+  padding: 12px 14px;
+  font: inherit;
+  background: #fcfbff;
+}
+textarea { resize: vertical; }
+.upload-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+.actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 6px;
+}
+.actions button {
+  background: var(--accent);
+  color: #fff;
+  font-weight: 700;
+}
+.actions .secondary {
+  background: #ece8fb;
+  color: #4b3db1;
+}
+.notes {
+  margin-top: 14px;
+  padding: 10px 12px;
+  border: 1px solid #ebe6fb;
+  border-radius: 14px;
+}
+.notes summary {
+  cursor: pointer;
+  font-weight: 700;
+}
+.preview-wrap {
+  padding: 12px;
+}
+.card-frame {
+  position: relative;
+  width: min(100%, 720px);
+  margin: 0 auto;
+}
+.base-image {
+  width: 100%;
+  display: block;
+  border-radius: 14px;
+}
+.overlay {
+  position: absolute;
+  white-space: pre-wrap;
+  word-break: break-word;
+  line-height: 1.45;
+  color: #23233a;
+  font-weight: 700;
+}
+.multiline { font-size: clamp(12px, 1.6vw, 20px); }
+.hidden { display: none; }
+
+/* question */
+.q-first { left: 10%; top: 13.5%; width: 38%; height: 4.8%; font-size: clamp(13px, 1.7vw, 22px); display:flex; align-items:center; }
+.q-feature { left: 10%; top: 24%; width: 37%; height: 12%; }
+.q-reason { left: 54%; top: 13.2%; width: 31%; height: 11.2%; }
+.q-message { left: 54.5%; top: 28%; width: 30%; height: 7.5%; }
+.q-free { left: 11%; top: 48%; width: 77%; height: 45%; font-size: clamp(14px, 1.6vw, 22px); }
+
+/* profile */
+.p-name { left: 39.5%; top: 11%; width: 51%; height: 4.2%; font-size: clamp(14px, 1.7vw, 22px); }
+.p-xid { left: 39.5%; top: 15.9%; width: 51%; height: 4.2%; font-size: clamp(14px, 1.7vw, 22px); }
+.p-history { left: 39.5%; top: 20.8%; width: 51%; height: 4.2%; font-size: clamp(14px, 1.7vw, 22px); }
+.p-creator { left: 39.5%; top: 25.6%; width: 51%; height: 4.2%; font-size: clamp(14px, 1.7vw, 22px); }
+.p-nickname { left: 12%; top: 30.2%; width: 32%; height: 3%; font-size: clamp(14px, 1.7vw, 22px); display:flex; align-items:center; justify-content:center; }
+.p-favorite { left: 37.2%; top: 34.5%; width: 32%; height: 3.3%; font-size: clamp(14px, 1.7vw, 22px); display:flex; align-items:center; justify-content:center; }
+.p-oshi1, .p-oshi2, .p-oshi3 { top: 77%; width: 20%; height: 14%; font-size: clamp(14px, 1.7vw, 20px); text-align:center; display:flex; align-items:flex-start; justify-content:center; }
+.p-oshi1 { left: 12.5%; }
+.p-oshi2 { left: 40.5%; }
+.p-oshi3 { left: 68.5%; }
+.img-slot {
+  position: absolute;
+  top: 49%;
+  width: 24.5%;
+  height: 16.5%;
+  overflow: hidden;
+  border-radius: 4px;
+}
+.slot1 { left: 12%; }
+.slot2 { left: 40.2%; }
+.slot3 { left: 68.5%; }
+.img-slot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: none;
+}
+.img-slot.has-image img { display: block; }
+
+@media (max-width: 920px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+  .controls {
+    position: static;
+  }
+}
