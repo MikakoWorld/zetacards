@@ -63,6 +63,8 @@ function applyText(previewRoot, data) {
 
   if (previewRoot === questionPreview) {
     fitQuestionText();
+  } else if (previewRoot === profilePreview) {
+    fitProfileText();
   }
 }
 
@@ -77,6 +79,38 @@ function fitQuestionText() {
 
   fields.forEach(({ selector, max }) => {
     const node = questionPreview.querySelector(selector);
+    if (!node) return;
+
+    // まず最大サイズを設定
+    let fontSize = max;
+    node.style.fontSize = `${fontSize}px`;
+
+    // 横幅または高さにはみ出さないまで縮小
+    while (fontSize > 8 && (node.scrollHeight > node.clientHeight + 2 || node.scrollWidth > node.clientWidth + 2)) {
+      fontSize -= 1;
+      node.style.fontSize = `${fontSize}px`;
+    }
+  });
+}
+
+function fitProfileText() {
+  const fields = [
+    { selector: '.p-name', max: 22 },
+    { selector: '.p-xid', max: 22 },
+    { selector: '.p-history', max: 22 },
+    { selector: '.p-creator', max: 22 },
+    { selector: '.p-nickname', max: 22 },
+    { selector: '.p-favorite', max: 22 },
+    { selector: '.p-oshi1-name', max: 18 },
+    { selector: '.p-oshi2-name', max: 18 },
+    { selector: '.p-oshi3-name', max: 18 },
+    { selector: '.p-oshi1-desc', max: 16 },
+    { selector: '.p-oshi2-desc', max: 16 },
+    { selector: '.p-oshi3-desc', max: 16 }
+  ];
+
+  fields.forEach(({ selector, max }) => {
+    const node = profilePreview.querySelector(selector);
     if (!node) return;
 
     // まず最大サイズを設定

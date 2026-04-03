@@ -240,7 +240,7 @@ small {
 
 .p-xid {
   left: 50.5%;
-  top: 15.5%;
+  top: 15.3%;
   width: 41%;
   height: 4%;
   font-size: clamp(14px, 1.7vw, 20px);
@@ -249,7 +249,7 @@ small {
 
 .p-history {
   left: 50.5%;
-  top: 19.8%;
+  top: 19.5%;
   width: 41%;
   height: 3.6%;
   font-size: clamp(14px, 1.7vw, 20px);
@@ -258,7 +258,7 @@ small {
 
 .p-creator {
   left: 62%;
-  top: 24.2%;
+  top: 23.8%;
   width: 29.5%;
   height: 4.2%;
   font-size: clamp(14px, 1.7vw, 18px);
@@ -277,10 +277,10 @@ small {
 }
 
 .p-favorite {
-  left: 37.2%;
+  left: 37%;
   top: 34.5%;
   width: 32%;
-  height: 3.3%;
+  height: 3%;
   font-size: clamp(14px, 1.7vw, 22px);
   display: flex;
   align-items: center;
