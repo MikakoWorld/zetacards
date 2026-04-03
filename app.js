@@ -262,22 +262,10 @@ downloadBtn.addEventListener('click', async () => {
     backgroundColor: null,
     scale: 2
   });
-  const dataURL = canvas.toDataURL('image/png');
-
-  // スマホ対応: download属性が効かない場合、新しいタブで画像を開く
-  const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-  if (isMobile || !('download' in document.createElement('a'))) {
-    // モバイルまたはdownload非対応の場合、新しいタブで開く
-    const newWindow = window.open();
-    newWindow.document.write(`<img src="${dataURL}" style="max-width:100%; height:auto;">`);
-    newWindow.document.title = `zeta-card-${state.activeTemplate}.png`;
-  } else {
-    // PCの場合、ダウンロード
-    const link = document.createElement('a');
-    link.href = dataURL;
-    link.download = `zeta-card-${state.activeTemplate}.png`;
-    link.click();
-  }
+  const link = document.createElement('a');
+  link.href = canvas.toDataURL('image/png');
+  link.download = `zeta-card-${state.activeTemplate}.png`;
+  link.click();
 });
 
 loadState();
